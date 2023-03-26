@@ -1,7 +1,11 @@
-# Awesome Project Build with TypeORM
+# Photos Album TypeORM demo
+### A simple demo for loading data and using the EntityManager and Repository in TypeORM.
+
+
 
 Steps to run this project:
 
 1. Run `npm i` command
 2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+3. Run `npm run start:dev` command
+4. Have fun!
