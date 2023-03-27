@@ -176,16 +176,41 @@ AppDataSource.initialize()
                 metadataz: true,
             },
             where: {
-                id: 3
+                id: 4
             }
         });
 
-        //console.log(typeof(photos));
-        photos.map((photo) => console.log(photo.name));
-
-        // Load me the photo with its metadata that has an id of 1
-        // Here, photos will contain an array of photos from the database, and each photo will contain its photo metadata because our relation model now is bidirectional.
         console.log(photos)
+
+        // Load me the photo with its metadata that has an id of (x)
+        // Here, photos will contain an array of photos from the database, and each photo will contain its photo metadata because our relation model now is bidirectional.
+        //console.log(photos)
+
+        // ====================================================
+
+        // # Using cascades to automatically save related objects
+
+        // create new photo
+        // const photo = new Photo()
+        // photo.name = "Hovvdy Bear"
+        // photo.description = "I am a hovvdy bear doing cartwheels"
+        // photo.filename = "hovvdy-bear-cartwheels.jpeg"
+        // photo.isPublished = true
+        // photo.views = 555555
+
+        // create photo metadata object
+        // const metadata = new PhotoMetadata()
+        // metadata.compressed = true
+        // metadata.height = 1555
+        // metadata.width = 2550
+        // metadata.orientation = "portrait"
+        // metadata.comment = "Cybershoot"
+
+        // this way we connect the entities, notice we now set the 
+        // photo's 'metadata' property, instead of the metadata's 'photo' property as before
+        // photo.metadataz = metadata
+        // photoRepository.save(photo)
+        // console.log("Photo is saved, photo metadata is saved too.")
 
 
 
