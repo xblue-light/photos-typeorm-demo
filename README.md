@@ -36,12 +36,11 @@ The photo table, should have a new author column and creating a foreign key for 
 
 
 
-The expected result when we query the database should be:
+This displays an author with the id of 2 and the Photo entities which are related to that author.
 
 ```json
 
 {
-    // This displays an author with the id of 2 and the Photo entities which are related to that author.
     "id": 2,
     "name": "Stephen King",
     "photos": [
