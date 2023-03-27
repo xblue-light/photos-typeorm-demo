@@ -14,7 +14,6 @@ AppDataSource.initialize()
         const photoRepository = AppDataSource.getRepository(Photo);
         const metadataRepository = AppDataSource.getRepository(PhotoMetadata)
 
-
         // Here you can start to work with your database
         // Add some photos
         // console.log("Initialization done! TypeORM is ready!")
@@ -121,33 +120,72 @@ AppDataSource.initialize()
         // console.log("Removing photo with id: 2");
         // await photoRepository.remove(photoToRemove)
 
+        // ====================================================
+
         // # Creating a one-to-one relation and saving a one-to-one relation
 
-        // create a photo
-        const photo1 = new Photo()
-        photo1.name = "Sydney, Australia 2015"
-        photo1.description = "A beautiful view of the Sydney Opera House"
-        photo1.filename = "sydney-opera-01.jpg"
-        photo1.views = 245
-        photo1.isPublished = true
+        // create photos
+        // const photo1 = new Photo()
+        // photo1.name = "Adelaide2"
+        // photo1.description = "A beautiful view of Adelaide city in Australia"
+        // photo1.filename = "adelaide-city2.jpg"
+        // photo1.views = 255
+        // photo1.isPublished = true
+        // photo1.id = 45;
 
-        const metadata = new PhotoMetadata()
-        metadata.comment = "High fidelity picture"
-        metadata.height = 1200
-        metadata.width = 2400
-        metadata.compressed = false
-        metadata.orientation = "landscape"
+        // const metadata = new PhotoMetadata()
+        // metadata.comment = "DCIM"
+        // metadata.height = 1200
+        // metadata.width = 2400
+        // metadata.compressed = false
+        // metadata.orientation = "portrait"
+        // metadata.id = 255
 
-        metadata.photo = photo1 // this way we connect the two entities 
-
+        // metadata.photo = photo1
         
-        // first we should save a photo
-        await photoRepository.save(photo1)
+        // // // first we should save a photo
+        // await photoRepository.save(photo1)
         
-        // next save a photo metadata
-        await metadataRepository.save(metadata)
+        // // // next save a photo metadata
+        // await metadataRepository.save(metadata)
 
-        console.log("Metadata is saved, and the relation between metadata and photo is created in the database too")
+        // console.log("Metadata is saved, and the relation between metadata and photo is created in the database too")
+
+        // ====================================================
+        // Find data from metadata repository
+
+        // In this code example, we are querying the PhotoMetadata repository and eagerly loading the Photo entity using the relations option. 
+        // We can then access the associated Photo entity using the metadata.photo property.
+        // In this case, the where: { id: 4 } refers to the id column of the PhotoMetadata entity.
+        // const photo = await metadataRepository.findOne({
+        //     relations: ["photo"], 
+        //     where: { 
+        //         id: 4 
+        //     }
+        // }); 
+
+        // console.log("Found photo from user with id: 3");
+        // console.log(photo);
+
+        // ====================================================
+
+        // # Loading objects with their relations
+
+        const photos = await photoRepository.find({
+            relations: {
+                metadataz: true,
+            },
+            where: {
+                id: 3
+            }
+        });
+
+        //console.log(typeof(photos));
+        photos.map((photo) => console.log(photo.name));
+
+        // Load me the photo with its metadata that has an id of 1
+        // Here, photos will contain an array of photos from the database, and each photo will contain its photo metadata because our relation model now is bidirectional.
+        console.log(photos)
 
 
 
