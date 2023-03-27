@@ -1,9 +1,11 @@
 import { 
     Column, 
     Entity, 
+    ManyToOne, 
     OneToOne, 
     PrimaryGeneratedColumn 
 } from "typeorm";
+import { Author } from "./Author.entity";
 import { PhotoMetadata } from "./PhotoMetadata.entity";
 
 @Entity()
@@ -38,4 +40,9 @@ export class Photo {
         { cascade: true, }
     )
     metadataz: PhotoMetadata
+
+    // In many-to-one / one-to-many relation, the owner side is always many-to-one. 
+    // It means that the class that uses @ManyToOne will store the id of the related object.
+    @ManyToOne(() => Author, (author) => author.photos)
+    author: Author
 }
