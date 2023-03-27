@@ -26,8 +26,14 @@ export class PhotoMetadata {
 
     @Column()
     comment: string
-
+    
+    // Here we add an inverse side of the relationship and make relations between PhotoMetadata and Photo bidirectional.
+    // @OneToOne(
+        //     type => Photo, 
+        //     (photo) => photo.metadata,
+        //     { onDelete: "CASCADE" }
+        // )
     @OneToOne(() => Photo)
-    @JoinColumn()
+    @JoinColumn() // Using @JoinColumn decorator is required on the owner side of the relationship. The owning side contains a column with the foreign key.
     photo: Photo
 }

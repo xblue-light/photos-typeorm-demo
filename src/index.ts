@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import { AppDataSource } from "./data-source"
 import { Photo } from "./entity/Photo"
+import { PhotoMetadata } from './entity/PhotoMetadata.entity'
 
 // To initialize initial connection with the database, register all entities
 // and "synchronize" database schema, call "initialize()" method of a newly created database
@@ -9,7 +10,10 @@ import { Photo } from "./entity/Photo"
 AppDataSource.initialize()
     .then(async () => {
 
+        // get entity repositories
         const photoRepository = AppDataSource.getRepository(Photo);
+        const metadataRepository = AppDataSource.getRepository(PhotoMetadata)
+
 
         // Here you can start to work with your database
         // Add some photos
@@ -108,7 +112,7 @@ AppDataSource.initialize()
         // console.log("Updated photo details successfully!");
         // await photoRepository.save(photoToUpdate);
 
-        // =====================================================
+        // ====================================================
 
         //# Removing from the database
         // const photoToRemove = await photoRepository.findOneBy({
@@ -117,8 +121,33 @@ AppDataSource.initialize()
         // console.log("Removing photo with id: 2");
         // await photoRepository.remove(photoToRemove)
 
-        // # Creating a one-to-one relation
+        // # Creating a one-to-one relation and saving a one-to-one relation
 
+        // create a photo
+        const photo1 = new Photo()
+        photo1.name = "Sydney, Australia 2015"
+        photo1.description = "A beautiful view of the Sydney Opera House"
+        photo1.filename = "sydney-opera-01.jpg"
+        photo1.views = 245
+        photo1.isPublished = true
+
+        const metadata = new PhotoMetadata()
+        metadata.comment = "High fidelity picture"
+        metadata.height = 1200
+        metadata.width = 2400
+        metadata.compressed = false
+        metadata.orientation = "landscape"
+
+        metadata.photo = photo1 // this way we connect the two entities 
+
+        
+        // first we should save a photo
+        await photoRepository.save(photo1)
+        
+        // next save a photo metadata
+        await metadataRepository.save(metadata)
+
+        console.log("Metadata is saved, and the relation between metadata and photo is created in the database too")
 
 
 
