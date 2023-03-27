@@ -41,6 +41,7 @@ The expected result when we query the database should be:
 ```json
 
 {
+    // This displays an author with the id of 2 and the Photo entities which are related to that author.
     "id": 2,
     "name": "Stephen King",
     "photos": [
