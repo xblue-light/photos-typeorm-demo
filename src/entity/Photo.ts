@@ -39,7 +39,7 @@ export class Photo {
         // Example can be compared from index.ts @ line 144 VS line 211
         { cascade: true, }
     )
-    metadataz: PhotoMetadata
+    metadataz?: PhotoMetadata
 
     // In many-to-one / one-to-many relation, the owner side is always many-to-one. 
     // It means that the class that uses @ManyToOne will store the id of the related object.

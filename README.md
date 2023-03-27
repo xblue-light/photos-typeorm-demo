@@ -36,3 +36,49 @@ The photo table, should have a new author column and creating a foreign key for 
 
 
 
+The expected result when we query the database should be:
+
+```json
+
+{
+    "id": 2,
+    "name": "Stephen King",
+    "photos": [
+        {
+            "id": 6,
+            "name": "Children of the Corn",
+            "description": "Burt and Vicky are traveling through Nebraska on their way to California on a vacation meant to save their failing marriage.",
+            "filename": "children-of-the-corn.jpeg",
+            "views": 20,
+            "isPublished": true,
+            "metadataz": {
+                "id": 6,
+                "height": 455,
+                "width": 355,
+                "orientation": "portrait",
+                "compressed": true,
+                "comment": "JDK"
+            }
+        },
+        {
+            "id": 7,
+            "name": "The Colorado Kid",
+            "description": "Vince Teague and Dave Bowie are the sole operators of The Weekly Islander, a small Maine newspaper. Stephanie McCann has been working for them as an intern.",
+            "filename": "the-colorado-kid.jpeg",
+            "views": 5,
+            "isPublished": true,
+            "metadataz": null
+        },
+        {
+            "id": 8,
+            "name": "The Dark Half",
+            "description": "For years, Thad Beaumont has been writing books under the pseudonym George Stark. When a journalist threatens to expose Beaumont's pen name, the author decides to go public first, killing off his pseudonym.",
+            "filename": "the-dark-half.jpeg",
+            "views": 10,
+            "isPublished": true,
+            "metadataz": null
+        }
+    ]
+}
+
+```

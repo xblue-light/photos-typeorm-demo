@@ -21,6 +21,6 @@ export class Author {
 
     // Author contains an inverse side of a relation. 
     // OneToMany is always an inverse side of the relation, and it can't exist without ManyToOne on the other side of the relation.
-    @OneToMany(() => Photo, (photo) => photo.author) // note: we will create author property in the Photo class below
+    @OneToMany(() => Photo, (photo) => photo.author, { cascade: true }) // note: we will create author property in the Photo class below
     photos: Photo[]
 }
