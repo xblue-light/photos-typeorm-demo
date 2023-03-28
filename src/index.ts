@@ -5,6 +5,8 @@ import { Photo } from "./entity/Photo"
 import { Author } from './entity/Author.entity'
 import { PhotoMetadata } from './entity/PhotoMetadata.entity'
 
+console.log(process.env.BAZINGA)
+
 // To initialize initial connection with the database, register all entities
 // and "synchronize" database schema, call "initialize()" method of a newly created database
 // once in your application bootstrap
