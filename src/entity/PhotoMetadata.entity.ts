@@ -29,7 +29,7 @@ export class PhotoMetadata {
     
     // Here we add an inverse side of the relationship and make relations between PhotoMetadata and Photo bidirectional.
     @OneToOne(
-        type => Photo, 
+        () => Photo, 
         (photo) => photo.metadataz,
         { onDelete: "CASCADE" }
     )
